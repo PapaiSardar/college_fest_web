@@ -6,4 +6,4 @@
 ## events ---> mrinmoy
 ## events regis page --->samvit
 
-<h2>pip install crispy-bootstrap5 </h2>
+<h3>pip install crispy-bootstrap5   -> install for run the server</h3>
