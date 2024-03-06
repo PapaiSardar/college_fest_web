@@ -6,6 +6,9 @@ from fest_app.models import *
 def login(request):
     return render(request,'login.html')
 
+def events(request):
+    return render (request,'events.html')
+
 def home(request):
     return render(request,'index.html')
 def student_login(request):
