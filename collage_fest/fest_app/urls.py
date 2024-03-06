@@ -4,4 +4,5 @@ urlpatterns=[
     path("",views.login),
     path('home',views.home),
     path('student_login',views.student_login),
+    path('s_login',views.s_login),
 ]
