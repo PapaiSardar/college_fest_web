@@ -22,6 +22,13 @@ def s_login(request):
     u=student_basic()
     u.name=request.GET['a1']
     u.roll=request.GET['a2']
+    a=request.GET['a3']
     u.payment_status=0
+    z=request.GET['college']
+    if z=="Future Institute of Technology":
+        u.college_name=z
+    else:
+        u.college_name=a
+    u.collage_status=0
     u.save()
     return render(request,'stu_login.html')
