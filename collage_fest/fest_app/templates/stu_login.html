@@ -23,6 +23,8 @@
             position: absolute;
             width: 400px;
             animation: myAnim 2s ease 0s 1 normal forwards;
+            align-items: center;
+            justify-content:center;
         }
 
         @keyframes myAnim {
@@ -73,7 +75,6 @@
 
         .login-container {
             position: relative;
-
             background-color: #eead74;
             padding: 20px;
             border-radius: 10px;
@@ -88,7 +89,7 @@
 
         input[type="text"],
         select {
-            width: calc(100% - 22px);
+            width:  350px;
             /* Adjust as needed */
             padding: 10px;
             margin: 5px 0;
@@ -99,13 +100,13 @@
         }
 
         input[type="submit"] {
-            width: 100%;
+            width: 350px;
             background-color: #2b2927;
             color: white;
-            padding: 14px 20px;
+            padding: 14px 18px;
             margin: 8px 0;
             border: none;
-            border-radius: 4px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 16px;
         }
@@ -120,11 +121,25 @@
 
         .register-link {
             text-align: center;
-        }
+            width: 350px;
+            background-color: #2b2927;
+            color: white;
+            padding: 14px 18px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
 
+        }
+         .register-link:hover {
+            background-color: #45a049; 
+         }
         .register-link a {
-            color: #333;
+            color: white;
             text-decoration: none;
+            
+
         }
     </style>
     <meta charset="utf-8">
@@ -193,7 +208,7 @@
     <div class="body">
         <div class="login-wrapper">
             <div class="login-container">
-                <h1>Student Rgistration</h1>
+                <h1>Student Registration</h1>
                 <form action="s_login">
                     <br>
                     <input type="text" name="a1" placeholder="Name">
