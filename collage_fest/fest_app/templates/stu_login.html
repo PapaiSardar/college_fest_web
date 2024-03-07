@@ -3,17 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Student Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: radial-gradient(#7f6262 0%, #131111 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-wrapper {
+            
+            position: absolute;
+            width: 300px;
+            animation: myAnim 2s ease 0s 1 normal forwards;
+        }
+        @keyframes myAnim {
+            0% {
+                animation-timing-function: ease-in;
+                opacity: 1;
+                transform: translateY(45px);
+            }
+        
+            24% {
+                opacity: 1;
+            }
+        
+            40% {
+                animation-timing-function: ease-in;
+                transform: translateY(24px);
+            }
+        
+            65% {
+                animation-timing-function: ease-in;
+                transform: translateY(12px);
+            }
+        
+            82% {
+                animation-timing-function: ease-in;
+                transform: translateY(6px);
+            }
+        
+            93% {
+                animation-timing-function: ease-in;
+                transform: translateY(4px);
+            }
+        
+            25%,
+            55%,
+            75%,
+            87% {
+                animation-timing-function: ease-out;
+                transform: translateY(0px);
+            }
+        
+            100% {
+                animation-timing-function: ease-out;
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+        .login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #747ea4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+        input[type="text"], select {
+            width: calc(100% - 22px); /* Adjust as needed */
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .college-name-other {
+            display: none;
+        }
+        .register-link {
+            text-align: center;
+        }
+        .register-link a {
+            color: #333;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>student login page</h1>
-    <form action="s_login">
-        <br>
-        <input type="text" name="a1" placeholder="Name">
-        <br>
-        <input type="text" name="a2" placeholder="Roll No.">
-        <br>
-        <input type="submit">
-    </form>
+    <div class="login-wrapper">
+        <div class="login-container">
+            <h1>Student Rgistration</h1>
+            <form action="s_login">
+                <br>
+                <input type="text" name="a1" placeholder="Name">
+                <br>
+                <input type="text" name="a2" placeholder="Roll No.">
+                <br>
+                <select id="college" name="college" onchange="showOtherCollege()">
+                    <option value="FIT">FIT</option>
+                    <option value="other">Other</option>
+                </select>
+                <div id="other-college" class="college-name-other">
+                    <input type="text" name="other_college" placeholder="Enter Your College Name">
+                </div>
+                <br>
+                <input type="submit">
+            </form>
+            <div class="register-link">
+                <a href="register.html">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showOtherCollege() {
+            var collegeSelect = document.getElementById("college");
+            var otherCollegeInput = document.getElementById("other-college");
+
+            if (collegeSelect.value === "other") {
+                otherCollegeInput.style.display = "block";
+            } else {
+                otherCollegeInput.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
