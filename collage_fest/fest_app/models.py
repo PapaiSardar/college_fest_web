@@ -10,3 +10,8 @@ class student_detalis(models.Model):
 
     class Meta:
         db_table='student_detalis'
+class admin(models.Model):
+    user=models.CharField(max_length=50)
+    pwd=models.IntegerField()
+    class Meta:
+        db_table='admin'
