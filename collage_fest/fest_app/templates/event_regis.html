@@ -29,76 +29,11 @@
 
     <!-- Template Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+    
+
 </head>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden; /* Hide horizontal scrollbar */
-    }
-    .gallery {
-        display: flex;
-        flex-direction: column; /* Display images in a column */
-        align-items: center; /* Center images horizontally */
-        padding: 20px;
-    }
-    .event {
-        margin-bottom: 20px; /* Add space between images */
-        position: relative; /* Position event details relative to the event container */
-    }
-    .event img {
-        max-width: 100%; /* Ensure images fit within their containers */
-        border-radius: 8px; /* Add rounded corners to images */
-    }
-    .event-details {
-        position: absolute; /* Position event details absolutely */
-        top: 10px; /* Align details to the top */
-        left: 10px; /* Align details to the left */
-        background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
-        padding: 10px;
-        border-radius: 5px;
-    }
-    .popup-form {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #ecd5c2;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .popup-form input[type="text"] {
-        width: calc(100% - 22px);
-        padding: 10px;
-        margin: 5px 0;
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-    .popup-form input[type="submit"] {
-        width: 100%;
-        background-color: #eead74;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    .close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-        font-size: 20px;
-    }
-</style>
 
 <body>
 
@@ -114,7 +49,7 @@
     <div class="container-fluid nav-bar">
         <div class="container">
             <nav class="navbar navbar-light navbar-expand-lg py-4">
-                <a href="home" class="navbar-brand">
+                <a href="index.html" class="navbar-brand">
                     <h1 class="text-primary fw-bold mb-0">CulA<span class="text-dark">Kriti</span> </h1>
                 </a>
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
@@ -123,8 +58,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
-                        <a href="home" class="nav-item nav-link">Home</a>
-                        <a href="events" class="nav-item nav-link active">Events</a>
+                        <a href="home" class="nav-item nav-link active">Home</a>
+                        <a href="events" class="nav-item nav-link">Events</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <!-- <a href="service.html" class="nav-item nav-link">Services</a> -->
                         <!-- <a href="menu.html" class="nav-item nav-link">Menu</a> -->
@@ -148,56 +83,11 @@
             </nav>
         </div>
     </div>
-<!-- Navbar end -->
+    <!-- Navbar End -->
 
-<div class="body">
-    <div class="gallery">
-        <!-- Event 1 -->
-        <div class="event">
-            <img src="{% static 'img/catwalk.png' %}" alt="Event 1" onclick="showRegistrationForm('Catwalk')">
-            <div class="event-details">
-                <h3>CatWalk</h3>
-                <p>Date: January 1, 2024</p>
-                <p>Location: ABC Hall</p>
-            </div>
-        </div>
-        <!-- Event 2 -->
-        <div class="event">
-            <img src="{% static 'img/duoDance.png' %}" alt="Event 2" onclick="showRegistrationForm('Duo Dance')">
-            <div class="event-details">
-                <h3>Duo Dance</h3>
-                <p>Date: February 15, 2024</p>
-                <p>Location: XYZ Auditorium</p>
-            </div>
-        </div>
-        <!-- Add more events as needed -->
-    </div>
-
-    <!-- Popup Registration Form -->
-    <div id="registrationPopup" class="popup-form">
-        <span class="close" onclick="closeRegistrationForm()">&times;</span>
-        <h2>Register for <span id="eventTitle"></span></h2>
-        <form action="registration.php" method="post">
-            <input type="text" name="name" placeholder="Name">
-            <br>
-            <input type="text" name="rollNo" placeholder="Roll No.">
-            <br>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-
-    <script>
-        function showRegistrationForm(eventTitle) {
-            document.getElementById('eventTitle').innerText = eventTitle;
-            document.getElementById('registrationPopup').style.display = 'block';
-        }
-
-        function closeRegistrationForm() {
-            document.getElementById('registrationPopup').style.display = 'none';
-        }
-    </script>
-</div>
-
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-md-square btn-primary rounded-circle back-to-top"><i
+        class="fa fa-arrow-up"></i></a>
 
 
 <!-- JavaScript Libraries -->
@@ -213,4 +103,6 @@
 
 <!-- Template Javascript -->
 <script src="{% static 'js/main.js' %}"></script>
-    </html>
+</body>
+
+</html>
