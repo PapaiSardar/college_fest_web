@@ -9,7 +9,7 @@
     <style>
         .body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background-image:"{% static 'img/bg.jpeg' %}" ;
             margin: 0;
             padding: 0;
             display: flex;
@@ -206,6 +206,7 @@
             </div>
         </nav>
     </div>
+    <!-- login body -->
     <div class="body">
         <div class="login-wrapper">
             <div class="login-container">
@@ -217,17 +218,17 @@
                     <input type="text" name="a2" placeholder="Roll No.">
                     <br>
                     <select id="college" name="college" onchange="showOtherCollege()">
-                        <option value="FIT">FIT</option>
+                        <option value="Future Institute of Technology">FIT</option>
                         <option value="other">Other</option>
                     </select>
                     <div id="other-college" class="college-name-other">
-                        <input type="text" name="other_college" placeholder="Enter Your College Name">
+                        <input type="text" name="a3" placeholder="Enter Your College Name">
                     </div>
                     <br>
                     <input type="submit">
                 </form>
                 <div class="register-link">
-                    <a href="register.html">Login</a>
+                    <a href="login_stu">Login</a>
                 </div>
             </div>
         </div>
