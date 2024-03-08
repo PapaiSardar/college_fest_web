@@ -3,9 +3,6 @@ from django.http import HttpResponse
 from fest_app.models import *
 
 # Create your views here.
-def login(request):
-    return render(request,'login.html')
-
 def events(request):
     return render (request,'events.html')
 
@@ -32,3 +29,5 @@ def s_login(request):
     u.collage_status=0
     u.save()
     return render(request,'thank_reg.html')
+def login_stu(request):
+    return render(request,'login.html')
