@@ -39,18 +39,19 @@
         overflow-x: hidden; /* Hide horizontal scrollbar */
     }
     .gallery {
-        display: flex;
-        flex-direction: column; /* Display images in a column */
-        align-items: center; /* Center images horizontally */
-        padding: 20px;
+        display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); /* This line defines the grid layout */
+    gap:    70px; /* Space between images */
+    padding: 20px;
     }
     .event {
-        margin-bottom: 20px; /* Add space between images */
         position: relative; /* Position event details relative to the event container */
     }
     .event img {
-        max-width: 100%; /* Ensure images fit within their containers */
-        border-radius: 8px; /* Add rounded corners to images */
+        width: 200%; /* Adjust the width as needed */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 400px; /* Set a maximum width if necessary */
+        border-radius: 20px; /* Add rounded corners to images */ /* Add rounded corners to images */ /* Add rounded corners to images */
     }
     .event-details {
         position: absolute; /* Position event details absolutely */
