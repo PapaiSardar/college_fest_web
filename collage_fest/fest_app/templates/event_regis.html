@@ -273,7 +273,7 @@
     <div class="body">
             <div class="registration-container">
                 <h1 class="text-primary fw-bold mb-0">Event Registration</h1>
-                <form id="registrationForm" action="s_login">
+                <form id="registrationForm" action="">
                     <br>
                     <input type="text" id="nameField" name="a1" placeholder="Name" required>
                     <br>
@@ -306,6 +306,7 @@
               alert("Please enter Name and Roll No.");
           } else {
               document.getElementById("registrationForm").submit();
+              showPopup();
           }
       }
   </script>
