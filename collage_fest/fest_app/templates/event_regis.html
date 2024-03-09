@@ -38,155 +38,64 @@
 </head>
 
 <style>
-  
 
-        
-
-        @keyframes myAnim {
-            0% {
-                animation-timing-function: ease-in;
-                opacity: 1;
-                transform: translateY(45px);
-            }
-
-            24% {
-                opacity: 1;
-            }
-
-            40% {
-                animation-timing-function: ease-in;
-                transform: translateY(24px);
-            }
-
-            65% {
-                animation-timing-function: ease-in;
-                transform: translateY(12px);
-            }
-
-            82% {
-                animation-timing-function: ease-in;
-                transform: translateY(6px);
-            }
-
-            93% {
-                animation-timing-function: ease-in;
-                transform: translateY(4px);
-            }
-
-            25%,
-            55%,
-            75%,
-            87% {
-                animation-timing-function: ease-out;
-                transform: translateY(0px);
-            }
-
-            100% {
-                animation-timing-function: ease-out;
-                opacity: 1;
-                transform: translateY(0px);
-            }
-        }
-
-        .registration-container {
-          position: fixed;
-          width: 400px;
-          animation: fadeIn 2s ease 0s 1 normal forwards; /* Add animation */
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          align-items: center;
-          justify-content: center;
-          padding: 20px;
-          border-radius: 10px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add shadow to form */
-
-        }
-
-        h1 {
-            text-align: center;
-            color: #333333;
-        }
-
-        input[type="text"],
-        select {
-            width:  350px;
-            /* Adjust as needed */
-            padding: 10px;
-            margin: 5px 0;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        input[type="register"] {
-            width: 350px;
-            background-color: #2b2927;
-            color: white;
-            padding: 14px 18px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        input[type="register"]:hover {
-            background-color: #45a049;
-        }
+    /* body{
+        height: 63vh;
+        display: grid;
+        place-items: center;
+    } */
 
 
-        .register-link {
-            text-align: center;
-            width: 350px;
-            background-color: #2b2927;
-            color: white;
-            padding: 14px 18px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
+    .slider{
 
-        }
-         .register-link:hover {
-            background-color: #45a049; 
-         }
-        .register-link a {
-            color: white;
-            text-decoration: none;
-            
-
-        }
-
-        .carousel {
-        height: 100vh; /* Full viewport height */
+        height: 250px;
+        margin: auto;
+        position: relative;
+        width: 90%;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
     }
 
-    /* Position the form in the center */
-    .carousel-form {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1000; /* Ensure form is above images */
-        
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add shadow to form */
+    .slide-track{
+        display: flex;
+        width: calc(250px * 8);
+        animation: scroll 40s linear infinite;
     }
 
-    /* Make the images cover the carousel */
-    .carousel-item img {
+    @keyframes scroll{
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-250px * 4));
+        }
+    }
+
+    .slide {
+        height: 250px;
+        width: 250px;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        perspective: 100px;
+    }
+
+    img{
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        transition: transform 1s;
+    }
+
+    img:hover {
+        transform: translateZ(20px);
     }
 
     
 
 </style>
+
+
+
 <body>
 
     <!-- Spinner Start -->
@@ -237,92 +146,85 @@
     </div>
     <!-- Navbar End -->
 
-    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="1200">
-      <div class="carousel-inner">
-          <div class="carousel-item active">
-              <img src="static/img/event 9.JPG" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-              </div>
-          </div>
-          <!-- Add more carousel items here -->
-
-        <div class="carousel-item">
-          <img src="static/img/event-3.JPG" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-          </div>
-        </div>
-
-        <div class="carousel-item">
-          <img src="static/img/event 11.JPG" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-          </div>
-        </div>
-
-        <div class="carousel-item">
-          <img src="static/img/event 10.JPG" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-          </div>
-        </div>
 
 
+    <div class="slider" style="margin-top: 77px;">
 
-      </div>
-  </div>
-  
-  <div class="carousel-form">
-    <div class="body">
-            <div class="registration-container">
-                <h1 class="text-primary fw-bold mb-0">Event Registration</h1>
-                <form id="registrationForm" action="">
-                    <br>
-                    <input type="text" id="nameField" name="a1" placeholder="Name" required>
-                    <br>
-                    <input type="text" id="rollNoField" name="a2" placeholder="Roll No." required>
-                    <br>
-                    <select id="events" name="events">
-                        <option value="Catwalk">Catwalk</option>
-                        <option value="Duodance">Duodance</option>
-                    </select>
-                    <br>
-                    <div class="register-link">
-                        <a href="#" onclick="validateForm()">Register</a>
-                    </div>
-                </form>
+        <div class="slide-track">
+
+            <div class="slide">
+                <img src="static/img/event 9.JPG"/>
             </div>
-        
+            <div class="slide">
+                <img src="static/img/event 10.JPG"/>
+            </div>
+            <div class="slide">
+                <img src="static/img/event 11.JPG"/>
+            </div>
+            <div class="slide">
+                <img src="static/img/event-5.JPG"/>
+            </div>
+
+            <div class="slide">
+                <img src="static/img/event 9.JPG"/>
+            </div>
+            <div class="slide">
+                <img src="static/img/event 10.JPG"/>
+            </div>
+            <div class="slide">
+                <img src="static/img/event 11.JPG"/>
+            </div>
+            <div class="slide">
+                <img src="static/img/event-5.JPG"/>
+            </div>
+
+
+        </div>
+
     </div>
-  </div>
 
-  <script>
-      function showPopup() {
-          alert("You've registered for the event");
-      }
 
-      function validateForm() {
-          var nameField = document.getElementById("nameField");
-          var rollNoField = document.getElementById("rollNoField");
 
-          if (nameField.value.trim() === "" || rollNoField.value.trim() === "") {
-              alert("Please enter Name and Roll No.");
-          } else {
-              document.getElementById("registrationForm").submit();
-              showPopup();
-          }
-      }
-  </script>
 
-  
-<div class="carousel-controls d-flex justify-content-between">
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-  </button>
 
-</div>
+    <div class="container-fluid bg-dark py-5 my-1">
+        <h1 class="display-1 mb-4 animated bounceInDown text-primary">Event Registration</h1>
+        <p class="animated bounceInLeft" style="color: white; "><strong>Name:</strong> {{ student.name }}</p>
+        <p class="animated bounceInLeft" style="color: white; "><strong>Roll No:</strong> {{ student.roll }}</p>
+        <p class="animated bounceInLeft" style="color: white; "><strong>College Name:</strong> {{ student.college_name }}</p>
+    </div>
+
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-bordered" style="background-color: white; color: black;">
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Status</th>
+                        <th>payment button</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if student.payment_status == 0 %}
+                    <tr>
+                        <td>Data 1</td>
+                        <td>Unpaid</td>
+                        <td><a href="">Pay Now</a></td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td>Data 1</td>
+                        <td>Paid</td>
+                        <td>Already paid</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+
 
     
       
