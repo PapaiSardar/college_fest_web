@@ -75,7 +75,8 @@ def check_payment(request):
             else:
                 payment_status = "Payment is not completed.If your payment is already done please call 7470255315."
         except student_detalis.DoesNotExist:
-            payment_status = "Student with this roll number does not exist."
+            return render(request,'stu_login.html')
+            # payment_status = "Student with this roll number does not exist."
 
         return render(request, 'payment_status.html', {'payment_status': payment_status})
     else:
