@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Payment Status</title>
+</head>
+<body>
+    <h1>Check Payment Status</h1>
+    <form action="check_payment" method="post">
+        {% csrf_token %}
+        <label for="roll">Enter Roll Number:</label>
+        <input type="text" id="roll" name="roll">
+        <button type="submit">Check Payment Status</button>
+    </form>
+</body>
+</html>

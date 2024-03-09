@@ -8,4 +8,8 @@ urlpatterns=[
     path('events',views.events),
     path('events_regis',views.events_regis),
     path('login_stu',views.login_stu),
+    path('payment_status',views.p_status),
+    path('check_payment',views.check_payment),
+    #path('check-payment/', views.check_payment, name='check_payment'),
+    
 ]
