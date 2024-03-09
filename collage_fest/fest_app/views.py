@@ -29,6 +29,8 @@ def s_login(request):
     u.collage_status=0
     u.save()
     return render(request,'thank_reg.html')
+
+
 def login_stu(request):
     return render(request,'login.html')
 def p_status(request):
