@@ -33,8 +33,14 @@ def s_login(request):
 
 def login_stu(request):
     return render(request,'login.html')
+
+
+
 def p_status(request):
     return render(request,'payment_check.html')
+
+
+
 def pay_check(request):
     a=request.GET['a1']
     if a in student_detalis.objects.filter(roll=a):
@@ -47,7 +53,12 @@ def pay_check(request):
             return render(request,'payment_check.html',{'c':'data not found reg. please'})
     else:
         return render(request,'stu_login.html')
+    
+
+
+
 def check_payment(request):
+    
     if request.method == 'POST':
         roll = request.POST.get('roll')  # Assuming roll is submitted via POST
         
@@ -57,7 +68,7 @@ def check_payment(request):
                 payment_status = "Payment is completed."
             else:
                 payment_status = "Payment is not completed.If your payment is already done please call 7470255315."
-        except student_details.DoesNotExist:
+        except student_detalis.DoesNotExist:
             payment_status = "Student with this roll number does not exist."
 
         return render(request, 'payment_status.html', {'payment_status': payment_status})
