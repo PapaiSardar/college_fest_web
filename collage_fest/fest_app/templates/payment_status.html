@@ -9,7 +9,7 @@
     <form method="post">
         {% csrf_token %}
         <label for="roll">Enter Roll Number:</label>
-        <input type="text" id="roll" name="roll">
+        <input type="text" id="roll" name="roll" required>
         <button type="submit">Check Payment Status</button>
     </form>
     {% if payment_status %}
