@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from fest_app.models import *
+from django.http import Http404
 
 # Create your views here.
 def events(request):
@@ -8,7 +9,12 @@ def events(request):
 
 
 def events_regis(request):
-    return render (request,'event_regis.html')
+    try:
+        student = student_detalis.objects.get(roll=34230821020)
+    except student_detalis.DoesNotExist:
+        raise Http404("Student does not exist")
+    
+    return render(request, 'event_regis.html', {'student': student})
 
 def home(request):
     return render(request,'index.html')
