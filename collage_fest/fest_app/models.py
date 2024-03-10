@@ -18,3 +18,14 @@ class admin(models.Model):
     pwd=models.IntegerField()
     class Meta:
         db_table='admin'
+class events_detalis(models.Model):
+    event_id=models.IntegerField()
+    event_name=models.CharField(max_length=100)
+    part_no=models.IntegerField()
+    class Meta:
+        db_table='event_detalis'
+class event(models.Model):
+    roll=models.IntegerField()
+    event_id=models.IntegerField()
+    class Meta:
+        db_table='event'

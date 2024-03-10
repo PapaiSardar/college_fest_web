@@ -124,3 +124,14 @@ def p_app(request,id):
 
 def QR_page(request):
     return render(request,'QR_PAGE.html')
+
+def add_event(request):
+    return render(request,'event_det.html')
+
+def event_add(request):
+    z=events_detalis()
+    z.event_id=request.GET['a1']
+    z.event_name=request.GET['a2']
+    z.part_no=0
+    z.save()
+    return render(request,'event_det.html')
