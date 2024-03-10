@@ -10,7 +10,7 @@ def events(request):
 
 def events_regis(request):
     try:
-        student = student_detalis.objects.get(roll=34230821020)
+        student = student_detalis.objects.get(roll=34230821042)
     except student_detalis.DoesNotExist:
         raise Http404("Student does not exist")
     

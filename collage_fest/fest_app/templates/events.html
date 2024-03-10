@@ -162,63 +162,64 @@
     <div class="gallery">
         <!-- Event 1 -->
         <div class="event">
-            <img src="{% static 'img/catwalk.png' %}" alt="Event 1" onclick="showRegistrationForm('Catwalk')">
+            <img src="{% static 'img/catwalk.png' %}" alt="Event 1">
             <div class="event-details">
                 <h3>CatWalk</h3>
                 <p>Date: January 1, 2024</p>
                 <p>Location: ABC Hall</p>
-                <a href="#">Click here to register</a>
+                <a href="events_regis?event=Cat Walk">Click here to register</a>
             </div>
         </div>
         <!-- Event 2 -->
         <div class="event">
-            <img src="{% static 'img/duoDance.png' %}" alt="Event 2" onclick="showRegistrationForm('Duo Dance')">
+            <img src="{% static 'img/duoDance.png' %}" alt="Event 2">
             <div class="event-details">
                 <h3>Duo Dance</h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <a href="#">Click here to register</a>
+                <a href="events_regis?event=Duo Dance">Click here to register</a>
             </div>
         </div>
         <!-- event 3 -->
     
         <div class="event">
-            <img src="{% static 'img/2 min to fame.png' %}" alt="Event 2" onclick="showRegistrationForm('2 min to fame')">
+            <img src="{% static 'img/2 min to fame.png' %}" alt="Event 2">
             <div class="event-details">
                 <h3>2 min to fame </h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <a href="#">Click here to register</a>
+                <a href="events_regis?event=2 min to frame">Click here to register</a>
             </div>
         </div>
         <!-- event 4 -->
     
         <div class="event">
-            <img src="{% static 'img/face paint.png' %}" alt="Event 2" onclick="showRegistrationForm('face paint')">
+            <img src="{% static 'img/face paint.png' %}" alt="Event 2">
             <div class="event-details">
                 <h3>Face paint  </h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <a href="#">Click here to register</a>
+                <a href="events_regis?event=Face paint">Click here to register</a>
             </div>
         </div>
         <!-- event 5 -->
         <div class="event">
-            <img src="{% static 'img/reel.png' %}" alt="Event 2" onclick="showRegistrationForm('reel')">
+            <img src="{% static 'img/reel.png' %}" alt="Event 2">
             <div class="event-details">
                 <h3>Rell  </h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <a href="#">Click here to register</a>
+                <a href="events_regis?event=Rell">Click here to register</a>
             </div>
         </div>
         <!-- event 6 -->
         <div class="event">
-            <img src="{% static 'img/selfie.png' %}" alt="Event 2" onclick="showRegistrationForm('selfie')">
+            <img src="{% static 'img/selfie.png' %}" alt="Event 2">
             <div class="event-details">
                 <h3> selfie </h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
+                <a href="events_regis?event=Selfie">Click here to register</a>
             </div>
         </div>
       
@@ -227,31 +228,7 @@
       
 </div>
 
-    <!-- Popup Registration Form -->
-    <div id="registrationPopup" class="popup-form">
-        <span class="close" onclick="closeRegistrationForm()">&times;</span>
-        <h2>Register for <span id="eventTitle"></span></h2>
-        <form action="registration.php" method="post">
-            <input type="text" name="name" placeholder="Name">
-            <br>
-            <input type="text" name="rollNo" placeholder="Roll No.">
-            <br>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-
-    <script>
-        function showRegistrationForm(eventTitle) {
-            document.getElementById('eventTitle').innerText = eventTitle;
-            document.getElementById('registrationPopup').style.display = 'block';
-        }
-
-        function closeRegistrationForm() {
-            document.getElementById('registrationPopup').style.display = 'none';
-        }
-    </script>
-</div>
-
+    
 
 
 <!-- JavaScript Libraries -->
