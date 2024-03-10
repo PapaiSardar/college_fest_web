@@ -124,3 +124,24 @@ def p_app(request,id):
 
 def QR_page(request):
     return render(request,'QR_PAGE.html')
+
+
+
+
+def submit(request):
+    html_content = """
+    <html>
+    <head>
+        <title>My Page</title>
+    </head>
+    <body>
+        <h1>Payment Done ! it'll take few minute to updates the payment status </h1>
+        <p>Click <a href="home">here</a> to return HOME page</p>
+    </body>
+    </html>
+    """
+
+
+    response = HttpResponse(html_content)
+
+    return response
