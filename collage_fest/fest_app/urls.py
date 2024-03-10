@@ -18,5 +18,10 @@ urlpatterns=[
     path('pay_app',views.py_app),
     path('p_app/<int:id>',views.p_app),
     path('QR_page',views.QR_page),
+<<<<<<< HEAD
     path('submit',views.submit),
+=======
+    path('add_event',views.add_event),
+    path('event_add',views.event_add),
+>>>>>>> dfe46609c1d805ac9be73245c7286b2832b27345
 ]
