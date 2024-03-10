@@ -11,5 +11,10 @@ urlpatterns=[
     path('payment_status',views.p_status),
     path('check_payment',views.check_payment),
     #path('check-payment/', views.check_payment, name='check_payment'),
-    
+    path('admin_login',views.admin_login),
+    path('ad_log',views.ad_log),
+    path('log_app',views.log_app),
+    path('l_app/<int:id>',views.l_app),
+    path('pay_app',views.py_app),
+    path('p_app/<int:id>',views.p_app),
 ]

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Admin Login</h1>
+    <form action="ad_log">
+        <label for="roll">Enter admin password</label>
+        <input type="text" id="roll" name="roll" required>
+        <button type="submit">Login</button>
+    </form>
+    {% if condition %}
+        <form action="pay_app">
+            <button type="submit">Payment approval</button>
+        </form>
+        <form action="log_app">
+            <button type="submit">Login Approval</button>
+        </form>
+    {% else %}
+        <p>incorrect password</p>
+    {% endif %}
+</body>
+</html>
