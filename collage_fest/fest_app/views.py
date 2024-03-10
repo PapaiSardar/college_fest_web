@@ -81,6 +81,9 @@ def check_payment(request):
         return render(request, 'payment_status.html', {'payment_status': payment_status})
     else:
         return render(request, 'payment_status.html')
+    
+
+
 def admin_login(request):
     return render(request,'admin_login.html')
 def ad_log(request):
@@ -92,19 +95,32 @@ def ad_log(request):
     
     context = {'condition': condition}
     return render(request, 'admin_login.html', context)
+
+
 def log_app(request):
     students = student_detalis.objects.filter(collage_status=0)
     return render(request, 'student_list.html', {'students': students})
+
+
 def l_app(request,id):
     u=student_detalis.objects.get(id=id)
     u.collage_status=1
     u.save()
     return redirect("../log_app")
+
+
 def py_app(request):
     students = student_detalis.objects.filter(payment_status=0)
     return render(request, 'student_list1.html', {'students': students})
+
+
+
 def p_app(request,id):
     u=student_detalis.objects.get(id=id)
     u.payment_status=1
     u.save()
     return redirect("../pay_app")
+
+
+def QR_page(request):
+    return render(request,'QR_PAGE.html')

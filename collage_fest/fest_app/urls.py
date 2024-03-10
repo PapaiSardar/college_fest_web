@@ -17,4 +17,5 @@ urlpatterns=[
     path('l_app/<int:id>',views.l_app),
     path('pay_app',views.py_app),
     path('p_app/<int:id>',views.p_app),
+    path('QR_page',views.QR_page),
 ]
