@@ -125,6 +125,28 @@ def p_app(request,id):
 def QR_page(request):
     return render(request,'QR_PAGE.html')
 
+<<<<<<< HEAD
+
+
+
+def submit(request):
+    html_content = """
+    <html>
+    <head>
+        <title>My Page</title>
+    </head>
+    <body>
+        <h1>Payment Done ! it'll take few minute to updates the payment status </h1>
+        <p>Click <a href="home">here</a> to return HOME page</p>
+    </body>
+    </html>
+    """
+
+
+    response = HttpResponse(html_content)
+
+    return response
+=======
 def add_event(request):
     return render(request,'event_det.html')
 
@@ -135,3 +157,4 @@ def event_add(request):
     z.part_no=0
     z.save()
     return render(request,'event_det.html')
+>>>>>>> dfe46609c1d805ac9be73245c7286b2832b27345
