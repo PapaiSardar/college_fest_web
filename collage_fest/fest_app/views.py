@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from fest_app.models import *
 from django.http import Http404
+from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib import messages
 
 # Create your views here.
 def events(request):
@@ -108,3 +110,28 @@ def p_app(request,id):
     u.payment_status=1
     u.save()
     return redirect("../pay_app")
+
+
+
+
+def custom_login(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        roll = request.POST.get('roll')
+        user = authenticate(request, name=name, roll=roll)
+        if user is not None:
+            # Authentication successful, log the user in
+            auth_login(request, user)  # Use auth_login instead of login
+            return redirect('home')  # Redirect to home page after login
+        else:
+            # Authentication failed, show error message
+            messages.error(request, 'Invalid name or roll number')
+    return render(request, 'login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+
+ # Redirect to login page after logout
+

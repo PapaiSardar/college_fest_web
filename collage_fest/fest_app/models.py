@@ -18,3 +18,5 @@ class admin(models.Model):
     pwd=models.IntegerField()
     class Meta:
         db_table='admin'
+
+

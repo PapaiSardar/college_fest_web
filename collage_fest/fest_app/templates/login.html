@@ -1,15 +1,25 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
-    <form action="login">
-        <input type="text" name="a1" placeholder="Roll No">
-        <br>
-        <input type="submit">
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter your name"><br>
+        <label for="roll">Roll Number:</label><br>
+        <input type="text" id="roll" name="roll" placeholder="Enter your roll number"><br>
+        <button type="submit">Login</button>
     </form>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
 </body>
 </html>
