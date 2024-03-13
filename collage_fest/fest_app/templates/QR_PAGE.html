@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Payment Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form label {
+            margin-top: 10px;
+        }
+
+        form input[type="file"] {
+            width: 200px;
+            /* adjust the width as needed */
+            height: auto;
+        }
+
+        form .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .image-preview {
+            margin-top: 10px;
+        }
+
+        .image-preview img {
+            width: 200px;
+            /* adjust the width as needed */
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1>Payment Page</h1>
+        <img height="250px" src="{% static 'img/qr.png' %}" alt="QR Code for Payment">
+        <p>Please scan the QR code to make a payment.
+        <form action="submit" method="post">
+            {% csrf_token %}
+            <label for="payment-image">Payment screen shot:</label><br>
+            <input type="file" id="payment-image" name="payment-image" accept="image/*" required><br>
+            <input type="submit" value="Pay" class="button">
+        </form>
+       
+        </p>
+
+
+        
+    </div>
+
+
+</body>
+
+</html>

@@ -18,5 +18,9 @@ urlpatterns=[
     path('pay_app',views.py_app),
     path('p_app/<int:id>',views.p_app),
     path('login/', views.custom_login, name='login'),
-    path('logout/', views.logout_view, name='logout')
+    path('logout/', views.logout_view, name='logout'),
+    path('QR_page',views.QR_page),
+    path('submit',views.submit),
+    path('add_event',views.add_event),
+    path('event_add',views.event_add),
 ]

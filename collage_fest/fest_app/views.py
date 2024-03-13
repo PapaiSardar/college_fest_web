@@ -12,7 +12,7 @@ def events(request):
 
 def events_regis(request):
     try:
-        student = student_detalis.objects.get(roll=34230821020)
+        student = student_detalis.objects.get(roll=34230821042)
     except student_detalis.DoesNotExist:
         raise Http404("Student does not exist")
     
@@ -83,6 +83,9 @@ def check_payment(request):
         return render(request, 'payment_status.html', {'payment_status': payment_status})
     else:
         return render(request, 'payment_status.html')
+    
+
+
 def admin_login(request):
     return render(request,'admin_login.html')
 def ad_log(request):
@@ -94,23 +97,31 @@ def ad_log(request):
     
     context = {'condition': condition}
     return render(request, 'admin_login.html', context)
+
+
 def log_app(request):
     students = student_detalis.objects.filter(collage_status=0)
     return render(request, 'student_list.html', {'students': students})
+
+
 def l_app(request,id):
     u=student_detalis.objects.get(id=id)
     u.collage_status=1
     u.save()
     return redirect("../log_app")
+
+
 def py_app(request):
     students = student_detalis.objects.filter(payment_status=0)
     return render(request, 'student_list1.html', {'students': students})
+
+
+
 def p_app(request,id):
     u=student_detalis.objects.get(id=id)
     u.payment_status=1
     u.save()
     return redirect("../pay_app")
-
 
 
 
@@ -134,4 +145,41 @@ def logout_view(request):
 
 
  # Redirect to login page after logout
+
+
+def QR_page(request):
+    return render(request,'QR_PAGE.html')
+
+
+
+
+
+def submit(request):
+    html_content = """
+    <html>
+    <head>
+        <title>My Page</title>
+    </head>
+    <body>
+        <h1>Payment Done ! it'll take few minute to updates the payment status </h1>
+        <p>Click <a href="home">here</a> to return HOME page</p>
+    </body>
+    </html>
+    """
+
+
+    response = HttpResponse(html_content)
+
+    return response
+
+def add_event(request):
+    return render(request,'event_det.html')
+
+def event_add(request):
+    z=events_detalis()
+    z.event_id=request.GET['a1']
+    z.event_name=request.GET['a2']
+    z.part_no=0
+    z.save()
+    return render(request,'event_det.html')
 

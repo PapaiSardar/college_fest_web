@@ -1,0 +1,6 @@
+{
+    "editor.trimAutoWhitespace": true,
+    "workbench.editor.autoLockGroups": {
+        "mainThreadWebview-browserPreview": false
+    }
+}
