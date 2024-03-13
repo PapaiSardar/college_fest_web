@@ -211,11 +211,12 @@
         <div class="login-wrapper">
             <div class="login-container">
                 <h1>Student Registration</h1>
-                <form action="s_login">
+                <form action="s_login" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <br>
-                    <input type="text" name="a1" placeholder="Name">
+                    <input type="text" name="a1" placeholder="Name" required>
                     <br>
-                    <input type="text" name="a2" placeholder="Roll No.">
+                    <input type="text" name="a2" placeholder="Roll No." required>
                     <br>
                     <select id="college" name="college" onchange="showOtherCollege()">
                         <option value="Future Institute of Technology">FIT</option>
@@ -225,6 +226,8 @@
                         <input type="text" name="a3" placeholder="Enter Your College Name">
                     </div>
                     <br>
+                    <label for="icard">Enter your collage ID card</label>
+                    <input type="file" name="icard" id="icard">
                     <input type="submit">
                 </form>
                 <div class="register-link">

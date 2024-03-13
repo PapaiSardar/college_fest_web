@@ -21,6 +21,7 @@
                 <td>{{ student.name }}</td>
                 <td>{{ student.roll }}</td>
                 <td>{{ student.college_name }}</td>
+                <td><img src="../static/{{ student.id_card }}" width="200px" height="auto"></td>
                 <td><a href="l_app/{{student.id}}">Approve</a></td>
             </tr>
             {% endfor %}

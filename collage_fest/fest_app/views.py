@@ -4,6 +4,7 @@ from fest_app.models import *
 from django.http import Http404
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
+import os
 
 # Create your views here.
 def events(request):
@@ -25,16 +26,21 @@ def student_login(request):
 
 def s_login(request):
     u=student_detalis()
-    u.name=request.GET['a1']
-    u.roll=request.GET['a2']
-    a=request.GET['a3']
-    u.payment_status=0
-    z=request.GET['college']
+    if request.method == 'POST':
+        u.name=request.POST.get('a1')
+        u.roll=request.POST.get('a2')
+        s=str(request.FILES['icard'])
+        a=request.POST['a3']
+        z=request.POST.get('college')
     if z=="Future Institute of Technology":
         u.college_name=z
     else:
         u.college_name=a
+    handle_uploaded_file(request.FILES['icard'],s)
+    url="upoad/"+s
+    u.id_card=url
     u.collage_status=0
+    u.payment_status=0
     u.save()
     return render(request,'thank_reg.html')
 
@@ -161,7 +167,7 @@ def submit(request):
         <title>My Page</title>
     </head>
     <body>
-        <h1>Payment Done ! it'll take few minute to updates the payment status </h1>
+        <h1>Payment Done ! it'll take 24 hours to updates the payment status </h1>
         <p>Click <a href="home">here</a> to return HOME page</p>
     </body>
     </html>
@@ -182,4 +188,10 @@ def event_add(request):
     z.part_no=0
     z.save()
     return render(request,'event_det.html')
+def handle_uploaded_file(file,file_name):
+    if not os.path.exists('fest_app/static/upoad'):
+        os.mkdir('fest_app/static/upoad')
+    with open('fest_app/static/upoad/'+file_name, 'wb+') as destination:
+        for chunk in file.chunks():
+            destination.write(chunk)
 
