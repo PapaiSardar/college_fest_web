@@ -5,9 +5,10 @@ class student_detalis(models.Model):
     name=models.CharField(max_length=50)
     roll=models.IntegerField()
     collage_status=models.IntegerField()
+    id_card=models.ImageField()
     college_name=models.CharField(max_length=300)
     payment_status=models.IntegerField()
-
+    payment_ss=models.ImageField()
     class Meta:
         db_table='student_detalis'
 
