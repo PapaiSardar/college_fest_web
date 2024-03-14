@@ -2,7 +2,13 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse, JsonResponse
 from fest_app.models import *
 from django.http import Http404
+<<<<<<< HEAD
 import json
+=======
+from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib import messages
+import os
+>>>>>>> 8462ced21a3faec3978b0c26461f1e9810f37a64
 
 # Create your views here.
 def events(request):
@@ -68,6 +74,12 @@ def s_login(request):
         u.college_name=z
     else:
         u.college_name=a
+<<<<<<< HEAD
+=======
+    handle_uploaded_file(request.FILES['icard'],s)
+    url="upload/"+s
+    u.id_card=url
+>>>>>>> 8462ced21a3faec3978b0c26461f1e9810f37a64
     u.collage_status=0
     u.save()
     return render(request,'thank_reg.html')
@@ -123,11 +135,13 @@ def check_payment(request):
 def admin_login(request):
     return render(request,'admin_login.html')
 def ad_log(request):
-    a=request.GET['roll']
-    if a=='arnab@2003':
-        condition = True
-    else:
-        condition = False
+    if request.method=="POST":
+
+        a=request.POST['password']
+        if a=='arnab@2003':
+            condition = True
+        else:
+            condition = False
     
     context = {'condition': condition}
     return render(request, 'admin_login.html', context)
@@ -158,8 +172,32 @@ def p_app(request,id):
     return redirect("../pay_app")
 
 
+
+def custom_login(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        roll = request.POST.get('roll')
+        user = authenticate(request, name=name, roll=roll)
+        if user is not None:
+            # Authentication successful, log the user in
+            auth_login(request, user)  # Use auth_login instead of login
+            return redirect('home')  # Redirect to home page after login
+        else:
+            # Authentication failed, show error message
+            messages.error(request, 'Invalid name or roll number')
+    return render(request, 'login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+
+ # Redirect to login page after logout
+
+
 def QR_page(request):
     return render(request,'QR_PAGE.html')
+
 
 
 
@@ -181,6 +219,7 @@ def submit(request):
     response = HttpResponse(html_content)
 
     return response
+
 def add_event(request):
     return render(request,'event_det.html')
 

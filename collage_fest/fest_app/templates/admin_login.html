@@ -1,29 +1,88 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'bg2.jpg' %}"); /* Replace 'your-background-image.jpg' with your image path */
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background color */
+            border-radius: 10px;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 0;
+            text-transform: uppercase;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent input background */
+            color: #333;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        p {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <h1>Admin Login</h1>
-    <form action="ad_log">
-        <label for="roll">Enter admin password</label>
-        <input type="text" id="roll" name="roll" required>
-        <button type="submit">Login</button>
-    </form>
-    {% if condition %}
-        <form action="pay_app">
-            <button type="submit">Payment approval</button>
+    <div class="container">
+        <h1>Admin Login</h1>
+        <form action="ad_log" method="POST">
+            {% csrf_token %}
+            <label for="password">Enter admin password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
         </form>
-        <form action="log_app">
-            <button type="submit">Login Approval</button>
-        </form>
-        <form action="add_event">
-            <button type="submit">Add Event</button>
-        </form>
-    {% else %}
-        <p>incorrect password</p>
-    {% endif %}
+        {% if condition %}
+            <form action="pay_app">
+                <button type="submit">Payment approval</button>
+            </form>
+            <form action="log_app">
+                <button type="submit">Login Approval</button>
+            </form>
+            <form action="add_event">
+                <button type="submit">Add Event</button>
+            </form>
+        {% else %}
+            <p>Incorrect password</p>
+        {% endif %}
+    </div>
 </body>
 </html>

@@ -1,18 +1,72 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Student List</title>
+    <style>
+        body {
+            background-image: url("{% static 'bg2.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.3); /* Lighten background color */
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: rgba(0, 0, 0, 0.5); /* Darken header background color */
+        }
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.3); /* Lighten even row background color */
+        }
+        tr:nth-child(odd) {
+            background-color: rgba(0, 0, 0, 0.2); /* Lighten odd row background color */
+        }
+        a {
+            color: white;
+            text-decoration: none;
+            background-color: #4CAF50;
+            padding: 8px 16px;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #45a049;
+        }
+        img {
+            display: block;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Students with not approval login</h1>
+    <h1>Students with not approved login</h1>
     <table>
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Roll</th>
                 <th>College Name</th>
-                <th>Actions</th> <!-- New column for buttons -->
+                <th>Student ID Card</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +75,7 @@
                 <td>{{ student.name }}</td>
                 <td>{{ student.roll }}</td>
                 <td>{{ student.college_name }}</td>
-                <td><img src="../static/{{ student.id_card }}" width="200px" height="auto"></td>
+                <td><img src="{% static student.id_card %}" width="200px" height="auto"></td>
                 <td><a href="l_app/{{student.id}}">Approve</a></td>
             </tr>
             {% endfor %}
