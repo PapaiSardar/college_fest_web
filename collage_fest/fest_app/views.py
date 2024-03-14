@@ -35,7 +35,7 @@ def s_login(request):
     else:
         u.college_name=a
     handle_uploaded_file(request.FILES['icard'],s)
-    url="upoad/"+s
+    url="upload/"+s
     u.id_card=url
     u.collage_status=0
     u.payment_status=0
@@ -93,11 +93,13 @@ def check_payment(request):
 def admin_login(request):
     return render(request,'admin_login.html')
 def ad_log(request):
-    a=request.GET['roll']
-    if a=='arnab@2003':
-        condition = True
-    else:
-        condition = False
+    if request.method=="POST":
+
+        a=request.POST['password']
+        if a=='arnab@2003':
+            condition = True
+        else:
+            condition = False
     
     context = {'condition': condition}
     return render(request, 'admin_login.html', context)
