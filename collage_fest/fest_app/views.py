@@ -1,21 +1,56 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from fest_app.models import *
 from django.http import Http404
-import os
+import json
 
 # Create your views here.
 def events(request):
     return render (request,'events.html')
 
+def save_data(request):
+    if request.method == 'POST':
+        roll = 342  # Predefined roll number
+        eventname = request.POST.get('event_name')
+        try:
+            student = student_detalis.objects.get(roll=roll)
+        except student_detalis.DoesNotExist:
+            raise Http404("Student does not exist")
 
-def events_regis(request):
-    try:
-        student = student_detalis.objects.get(roll=34230821042)
-    except student_detalis.DoesNotExist:
-        raise Http404("Student does not exist")
+        # Check if a record with the roll number already exists
+        try:
+            z = abc.objects.get(roll=roll)
+        except abc.DoesNotExist:
+            # If the roll number is not in the table, create a new record
+            z = abc(roll=roll)
+
+        # Map event names to field names
+        event_field_map = {
+            'CatWalk': 'CatWalk',
+            'DuoDance': 'DuoDance',
+            'mintoframe': 'mintoframe',
+            'Facepaint': 'Facepaint',
+            'rell': 'rell',
+            'selfie': 'selfie'
+        }
+
+        # Set the event to 1 based on the event_name
+        if eventname in event_field_map:
+            setattr(z, event_field_map[eventname], 1)
+
+        # Assuming the field names are the same as the event names in your event_field_map
+        l = [event_name for event_name, field_name in event_field_map.items() if getattr(z, field_name) == 1]
+
+        
+        z.save()
+
+        return render(request, 'event_regis.html', {'l': l,'student': student})
+    else:
+        return HttpResponse('Invalid request method')
     
-    return render(request, 'event_regis.html', {'student': student})
+    
+
+#     return render(request, 'event_regis.html', {'student': student})
 
 def home(request):
     return render(request,'index.html')
@@ -24,21 +59,16 @@ def student_login(request):
 
 def s_login(request):
     u=student_detalis()
-    if request.method == 'POST':
-        u.name=request.POST.get('a1')
-        u.roll=request.POST.get('a2')
-        s=str(request.FILES['icard'])
-        a=request.POST['a3']
-        z=request.POST.get('college')
+    u.name=request.GET['a1']
+    u.roll=request.GET['a2']
+    a=request.GET['a3']
+    u.payment_status=0
+    z=request.GET['college']
     if z=="Future Institute of Technology":
         u.college_name=z
     else:
         u.college_name=a
-    handle_uploaded_file(request.FILES['icard'],s)
-    url="upoad/"+s
-    u.id_card=url
     u.collage_status=0
-    u.payment_status=0
     u.save()
     return render(request,'thank_reg.html')
 
@@ -141,7 +171,7 @@ def submit(request):
         <title>My Page</title>
     </head>
     <body>
-        <h1>Payment Done ! it'll take 24 hours to updates the payment status </h1>
+        <h1>Payment Done ! it'll take few minute to updates the payment status </h1>
         <p>Click <a href="home">here</a> to return HOME page</p>
     </body>
     </html>
@@ -161,10 +191,46 @@ def event_add(request):
     z.part_no=0
     z.save()
     return render(request,'event_det.html')
-def handle_uploaded_file(file,file_name):
-    if not os.path.exists('fest_app/static/upoad'):
-        os.mkdir('fest_app/static/upoad')
-    with open('fest_app/static/upoad/'+file_name, 'wb+') as destination:
-        for chunk in file.chunks():
-            destination.write(chunk)
 
+# def save_data(request):
+#     if request.method == 'POST':
+#         try:
+#             data = json.loads(request.body)
+#             roll = data.get('roll')
+#             event_name = data.get('event_name')
+#             if roll and event_name:  # Validate form data
+#                 event.objects.create(roll=roll, event_name=event_name)
+#                 return JsonResponse({'message': 'Data saved successfully'})
+#             else:
+#                 return JsonResponse({'error': 'Invalid form data'})
+#         except Exception as e:
+#             return JsonResponse({'error': str(e)})
+#     else:
+#         return JsonResponse({'error': 'Invalid request method'})
+
+
+
+    
+# def event_list(request):
+#     # Get all records where the event value is 1
+#     e = abc.objects.get(roll=34230821042)
+
+#     # Extract the event names
+#     event_names = []
+#     for event in e:
+#         if event.CatWalk == 1:
+#             event_names.append('CatWalk')
+#         if event.DuoDance == 1:
+#             event_names.append('DuoDance')
+#         if event.mintoframe == 1:
+#             event_names.append('mintoframe')
+#         if event.Facepaint == 1:
+#             event_names.append('Facepaint')
+#         if event.rell == 1:
+#             event_names.append('rell')
+#         if event.selfie == 1:
+#             event_names.append('selfie')
+
+#     print(event_names)
+
+#     return render(request, 'event_regis', {'event_names': event_names})

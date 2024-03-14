@@ -6,7 +6,8 @@ urlpatterns=[
     path('student_login',views.student_login),
     path('s_login',views.s_login),
     path('events',views.events),
-    path('events_regis',views.events_regis),
+    # path('events_regis',views.events_regis2),
+    path('save_data', views.save_data, name='save_data'),
     path('login_stu',views.login_stu),
     path('payment_status',views.p_status),
     path('check_payment',views.check_payment),
@@ -21,4 +22,5 @@ urlpatterns=[
     path('submit',views.submit),
     path('add_event',views.add_event),
     path('event_add',views.event_add),
+    
 ]
