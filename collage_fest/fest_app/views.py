@@ -2,13 +2,10 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse, JsonResponse
 from fest_app.models import *
 from django.http import Http404
-<<<<<<< HEAD
 import json
-=======
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
 import os
->>>>>>> 8462ced21a3faec3978b0c26461f1e9810f37a64
 
 # Create your views here.
 def events(request):
@@ -74,12 +71,9 @@ def s_login(request):
         u.college_name=z
     else:
         u.college_name=a
-<<<<<<< HEAD
-=======
     handle_uploaded_file(request.FILES['icard'],s)
     url="upload/"+s
     u.id_card=url
->>>>>>> 8462ced21a3faec3978b0c26461f1e9810f37a64
     u.collage_status=0
     u.save()
     return render(request,'thank_reg.html')
