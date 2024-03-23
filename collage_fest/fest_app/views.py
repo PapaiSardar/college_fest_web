@@ -1,20 +1,59 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from fest_app.models import *
 from django.http import Http404
+import json
+from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib import messages
+import os
 
 # Create your views here.
 def events(request):
     return render (request,'events.html')
 
+def save_data(request):
+    if request.method == 'POST':
+        roll = 342  # Predefined roll number
+        eventname = request.POST.get('event_name')
+        try:
+            student = student_detalis.objects.get(roll=roll)
+        except student_detalis.DoesNotExist:
+            raise Http404("Student does not exist")
 
-def events_regis(request):
-    try:
-        student = student_detalis.objects.get(roll=34230821042)
-    except student_detalis.DoesNotExist:
-        raise Http404("Student does not exist")
+        # Check if a record with the roll number already exists
+        try:
+            z = abc.objects.get(roll=roll)
+        except abc.DoesNotExist:
+            # If the roll number is not in the table, create a new record
+            z = abc(roll=roll)
+
+        # Map event names to field names
+        event_field_map = {
+            'CatWalk': 'CatWalk',
+            'DuoDance': 'DuoDance',
+            'mintoframe': 'mintoframe',
+            'Facepaint': 'Facepaint',
+            'rell': 'rell',
+            'selfie': 'selfie'
+        }
+
+        # Set the event to 1 based on the event_name
+        if eventname in event_field_map:
+            setattr(z, event_field_map[eventname], 1)
+
+        # Assuming the field names are the same as the event names in your event_field_map
+        l = [event_name for event_name, field_name in event_field_map.items() if getattr(z, field_name) == 1]
+
+        
+        z.save()
+
+        return render(request, 'event_regis.html', {'l': l,'student': student})
+    else:
+        return HttpResponse('Invalid request method')
     
-    return render(request, 'event_regis.html', {'student': student})
+    
+
+#     return render(request, 'event_regis.html', {'student': student})
 
 def home(request):
     return render(request,'index.html')
@@ -35,6 +74,9 @@ def s_login(request):
         u.college_name=z
     else:
         u.college_name=a
+    handle_uploaded_file(request.FILES['icard'],s)
+    url="upload/"+s
+    u.id_card=url
     u.collage_status=0
     u.save()
     return render(request,'thank_reg.html')
@@ -90,11 +132,13 @@ def check_payment(request):
 def admin_login(request):
     return render(request,'admin_login.html')
 def ad_log(request):
-    a=request.GET['roll']
-    if a=='arnab@2003':
-        condition = True
-    else:
-        condition = False
+    if request.method=="POST":
+
+        a=request.POST['password']
+        if a=='arnab@2003':
+            condition = True
+        else:
+            condition = False
     
     context = {'condition': condition}
     return render(request, 'admin_login.html', context)
@@ -125,6 +169,29 @@ def p_app(request,id):
     return redirect("../pay_app")
 
 
+
+def custom_login(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        roll = request.POST.get('roll')
+        user = authenticate(request, name=name, roll=roll)
+        if user is not None:
+            # Authentication successful, log the user in
+            auth_login(request, user)  # Use auth_login instead of login
+            return redirect('home')  # Redirect to home page after login
+        else:
+            # Authentication failed, show error message
+            messages.error(request, 'Invalid name or roll number')
+    return render(request, 'login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+
+ # Redirect to login page after logout
+
+
 def QR_page(request):
     return render(request,'QR_PAGE.html')
 
@@ -147,8 +214,6 @@ def submit(request):
 
     response = HttpResponse(html_content)
     return response
-
-
 def add_event(request):
     return render(request,'event_det.html')
 
@@ -159,5 +224,3 @@ def event_add(request):
     z.part_no=0
     z.save()
     return render(request,'event_det.html')
-
-

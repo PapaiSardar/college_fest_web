@@ -159,6 +159,7 @@
         <p class="animated bounceInLeft" style="color: white; "><strong>Name:</strong> {{ student.name }}</p>
         <p class="animated bounceInLeft" style="color: white; "><strong>Roll No:</strong> {{ student.roll }}</p>
         <p class="animated bounceInLeft" style="color: white;"><strong>College Name:</strong> {{ student.college_name }}</p>
+        
         <div class="table-responsive position-relative">
             <table id="eventTable" class="table table-bordered table-fade" style="background-color: rgba(255, 255, 255, 0.6);; color: black;">
                 <thead>
@@ -174,62 +175,65 @@
                     <tr>
                         
                         <td>Unpaid</td>
-                        <td><a href="">Pay Now</a></td>
-                        <td id="eventsRegistered"></td>
+                        <td><a href="QR_page">Pay Now</a></td>
+                        <td>
+                            {% for i in l %}
+                            {{ i }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
                     </tr>
                     {% else %}
                     <tr>
                         
                         <td>Paid</td>
                         <td>Already paid</td>
+<<<<<<< HEAD
                         <!-- <td id="eventsRegistered"></td> -->
                         <td ></td>
+=======
+                        <td>
+                            {% for i in l %}
+                            {{ i }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
+>>>>>>> 96f99098754559f61eb58aa65bfeb878622b88e0
                     </tr>
                     {% endif %}
                 </tbody>
                 </tbody>
             </table>
         </div>
-        <button onclick="clearEvents()" class="btn btn-primary py-2 px-4 d-none d-xl-inline-block rounded-pill">Clear Events</button>
+        
+        
+    
     </div>
     
     <script>
-        function clearEvents() {
+
+            function clearEvents() {
             // Clear the events from the table
-            var eventsRegisteredCell = document.getElementById('eventsRegistered');
-            eventsRegisteredCell.textContent = 'No events registered';
-            
-            // Clear the events from local storage
-            localStorage.removeItem('registeredEvents');
+            document.getElementById('eventsRegistered').textContent = "no events registered";
         }
-    
+
+            function add_database(){
+                v=document.getElementById('eventsRegistered').textContent
+                alert("added "+v)
+                return v
+                
+            }
+
         document.addEventListener('DOMContentLoaded', function() {
             var urlParams = new URLSearchParams(window.location.search);
             var eventName = urlParams.get('event');
             if (eventName) {
-                // Initialize or retrieve the list of registered events from localStorage
-                var events = JSON.parse(localStorage.getItem('registeredEvents')) || [];
-                // Check if the event is already registered
-                if (events.includes(eventName)) {
-                    // Event is already registered, show a pop-up
-                    alert('Event ' + eventName + ' is already registered.');
-                } else {
-                    // Add the new event to the list
-                    events.push(eventName);
-                    // Store the updated list of events back to localStorage
-                    localStorage.setItem('registeredEvents', JSON.stringify(events));
-                }
+                document.getElementById('eventsRegistered').textContent = eventName;
             }
-    
-            // Update the "Events Registered" cell with the list of events
-            var eventsRegisteredCell = document.getElementById('eventsRegistered');
-            if (events.length > 0) {
-                eventsRegisteredCell.textContent = events.join(', ');
-            } else {
-                eventsRegisteredCell.textContent = 'No events registered';
+            else{
+                document.getElementById('eventsRegistered').textContent = "no events registered";
             }
         });
     </script>
+    
     
     
     

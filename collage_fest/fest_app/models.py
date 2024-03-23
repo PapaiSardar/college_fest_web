@@ -20,8 +20,9 @@ class admin(models.Model):
         db_table='admin'
 
         
+
 class events_detalis(models.Model):
-    event_id=models.IntegerField()
+    roll=models.IntegerField()
     event_name=models.CharField(max_length=100)
     part_no=models.IntegerField()
     class Meta:
@@ -30,6 +31,18 @@ class events_detalis(models.Model):
         
 class event(models.Model):
     roll=models.IntegerField()
-    event_id=models.IntegerField()
+    eventName=models.CharField(max_length=100)
     class Meta:
         db_table='event'
+
+class abc(models.Model):
+    roll = models.IntegerField()
+    CatWalk = models.IntegerField(default=0)
+    DuoDance = models.IntegerField(default=0)
+    mintoframe = models.IntegerField(default=0)
+    Facepaint = models.IntegerField(default=0)
+    rell = models.IntegerField(default=0)
+    selfie = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = 'abc'
