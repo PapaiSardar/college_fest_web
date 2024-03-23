@@ -18,6 +18,9 @@ def events_regis(request):
 
 def home(request):
     return render(request,'index.html')
+
+
+
 def student_login(request):
     return render(request,'stu_login.html')
 
@@ -125,7 +128,6 @@ def p_app(request,id):
 def QR_page(request):
     return render(request,'QR_PAGE.html')
 
-<<<<<<< HEAD
 
 
 
@@ -144,9 +146,9 @@ def submit(request):
 
 
     response = HttpResponse(html_content)
-
     return response
-=======
+
+
 def add_event(request):
     return render(request,'event_det.html')
 
@@ -157,4 +159,5 @@ def event_add(request):
     z.part_no=0
     z.save()
     return render(request,'event_det.html')
->>>>>>> dfe46609c1d805ac9be73245c7286b2832b27345
+
+
