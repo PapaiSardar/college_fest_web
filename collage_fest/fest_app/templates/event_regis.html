@@ -175,14 +175,22 @@
                         
                         <td>Unpaid</td>
                         <td><a href="">Pay Now</a></td>
-                        <td id="eventsRegistered"></td>
+                        <td>
+                            {% for i in l %}
+                            {{ i }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
                     </tr>
                     {% else %}
                     <tr>
                         
                         <td>Paid</td>
                         <td>Already paid</td>
-                        <td id="eventsRegistered"></td>
+                        <td>
+                            {% for i in l %}
+                            {{ i }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
                     </tr>
                     {% endif %}
                 </tbody>

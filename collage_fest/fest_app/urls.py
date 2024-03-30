@@ -23,4 +23,5 @@ urlpatterns=[
     path('submit',views.submit),
     path('add_event',views.add_event),
     path('event_add',views.event_add),
+    path('save_data', views.save_data, name='save_data'),
 ]

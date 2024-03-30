@@ -167,7 +167,11 @@
                 <h3>CatWalk</h3>
                 <p>Date: January 1, 2024</p>
                 <p>Location: ABC Hall</p>
-                <a href="events_regis?event=Cat Walk">Click here to register</a>
+                <form action="save_data" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="event_name" value="CatWalk">
+                    <button type="submit">Click here to register for CatWalk</button>
+                </form>
             </div>
         </div>
         <!-- Event 2 -->
@@ -177,7 +181,11 @@
                 <h3>Duo Dance</h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <a href="events_regis?event=Duo Dance">Click here to register</a>
+                <form action="save_data" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="event_name" value="DuoDance">
+                    <button type="submit">Click here to register</button>
+                </form>
             </div>
         </div>
         <!-- event 3 -->
@@ -188,7 +196,11 @@
                 <h3>2 min to fame </h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <a href="events_regis?event=2 min to frame">Click here to register</a>
+                <form action="save_data" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="event_name" value="mintoframe">
+                    <button type="submit">Click here to register</button>
+                </form>
             </div>
         </div>
         <!-- event 4 -->
@@ -199,7 +211,11 @@
                 <h3>Face paint  </h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <a href="events_regis?event=Face paint">Click here to register</a>
+                <form action="save_data" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="event_name" value="Facepaint">
+                    <button type="submit">Click here to register</button>
+                </form>
             </div>
         </div>
         <!-- event 5 -->
@@ -209,7 +225,11 @@
                 <h3>Rell  </h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <a href="events_regis?event=Rell">Click here to register</a>
+                <form action="save_data" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="event_name" value="rell">
+                    <button type="submit">Click here to register</button>
+                </form>
             </div>
         </div>
         <!-- event 6 -->
@@ -219,7 +239,11 @@
                 <h3> selfie </h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <a href="events_regis?event=Selfie">Click here to register</a>
+                <form action="save_data" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="event_name" value="selfie">
+                    <button type="submit">Click here to register</button>
+                </form>
             </div>
         </div>
       

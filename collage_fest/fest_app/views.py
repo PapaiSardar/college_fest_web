@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
 import os
 
-# Create your views here.
+# Create your views here. 
 def events(request):
     return render (request,'events.html')
 
@@ -198,3 +198,42 @@ def handle_uploaded_file(file,file_name):
         for chunk in file.chunks():
             destination.write(chunk)
 
+def save_data(request):
+    if request.method == 'POST':
+        roll = 34230821011 # Predefined roll number
+        eventname = request.POST.get('event_name')
+        try:
+            student = student_detalis.objects.get(roll=roll)
+        except student_detalis.DoesNotExist:
+            raise Http404("Student does not exist")
+
+        # Check if a record with the roll number already exists
+        try:
+            z = abc.objects.get(roll=roll)
+        except abc.DoesNotExist:
+            # If the roll number is not in the table, create a new record
+            z = abc(roll=roll)
+
+        # Map event names to field names
+        event_field_map = {
+            'CatWalk': 'CatWalk',
+            'DuoDance': 'DuoDance',
+            'mintoframe': 'mintoframe',
+            'Facepaint': 'Facepaint',
+            'rell': 'rell',
+            'selfie': 'selfie'
+        }
+
+        # Set the event to 1 based on the event_name
+        if eventname in event_field_map:
+            setattr(z, event_field_map[eventname], 1)
+
+        # Assuming the field names are the same as the event names in your event_field_map
+        l = [event_name for event_name, field_name in event_field_map.items() if getattr(z, field_name) == 1]
+
+        
+        z.save()
+
+        return render(request, 'event_regis.html', {'l': l,'student': student})
+    else:
+        return HttpResponse('Invalid request method')

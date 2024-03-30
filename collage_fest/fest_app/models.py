@@ -32,3 +32,14 @@ class event(models.Model):
     event_id=models.IntegerField()
     class Meta:
         db_table='event'
+class abc(models.Model):
+    roll = models.IntegerField()
+    CatWalk = models.IntegerField(default=0)
+    DuoDance = models.IntegerField(default=0)
+    mintoframe = models.IntegerField(default=0)
+    Facepaint = models.IntegerField(default=0)
+    rell = models.IntegerField(default=0)
+    selfie = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = 'abc'
