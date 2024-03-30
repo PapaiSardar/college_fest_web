@@ -1,0 +1,247 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Culakriti </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playball&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static  'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static  'lib/owlcarousel/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Hide horizontal scrollbar */
+    }
+    .gallery {
+        display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); /* This line defines the grid layout */
+    gap:    70px; /* Space between images */
+    padding: 20px;
+    }
+    .event {
+        position: relative; /* Position event details relative to the event container */
+    }
+    .event:hover img {
+        filter: blur(3px); /* Apply blur effect on hover */
+    }
+    .event:hover .event-details {
+        display: block; /* Show event details on hover */
+    }
+    
+    .event img {
+        width: 200%; /* Adjust the width as needed */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 400px; /* Set a maximum width if necessary */
+        border-radius: 20px; /* Add rounded corners to images */ /* Add rounded corners to images */ /* Add rounded corners to images */
+    }
+    .event-details {
+        position: absolute; /* Position event details absolutely */
+        top: 10px; /* Align details to the top */
+        left: 10px; /* Align details to the left */
+        background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .popup-form {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ecd5c2;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .popup-form input[type="text"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    .popup-form input[type="submit"] {
+        width: 100%;
+        background-color: #eead74;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar start -->
+    <div class="container-fluid nav-bar">
+        <div class="container">
+            <nav class="navbar navbar-light navbar-expand-lg py-4">
+                <a href="home" class="navbar-brand">
+                    <h1 class="text-primary fw-bold mb-0">CulA<span class="text-dark">Kriti</span> </h1>
+                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                        <a href="home" class="nav-item nav-link">Home</a>
+                        <a href="events" class="nav-item nav-link active">Events</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <!-- <a href="service.html" class="nav-item nav-link">Services</a> -->
+                        <!-- <a href="menu.html" class="nav-item nav-link">Menu</a> -->
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu bg-light">
+                                <!-- <a href="book.html" class="dropdown-item">Booking</a> -->
+                                <a href="blog.html" class="dropdown-item">Our Blog</a>
+                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <!-- <a href="testimonial.html" class="dropdown-item">Testimonial</a> -->
+                                <a href="404.html" class="dropdown-item">404 Page</a>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    </div>
+                    <button class="btn-search btn btn-primary btn-md-square me-4 rounded-circle d-none d-lg-inline-flex"
+                        data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search"></i></button>
+                    <a href="student_login"
+                        class="btn btn-primary py-2 px-4 d-none d-xl-inline-block rounded-pill">Register/Login</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+<!-- Navbar end -->
+
+<div class="body">
+    <div class="gallery">
+        <!-- Event 1 -->
+        <div class="event">
+            <img src="{% static 'img/catwalk.png' %}" alt="Event 1">
+            <div class="event-details">
+                <h3>CatWalk</h3>
+                <p>Date: January 1, 2024</p>
+                <p>Location: ABC Hall</p>
+                <a href="events_regis?event=Cat Walk">Click here to register</a>
+            </div>
+        </div>
+        <!-- Event 2 -->
+        <div class="event">
+            <img src="{% static 'img/duoDance.png' %}" alt="Event 2">
+            <div class="event-details">
+                <h3>Duo Dance</h3>
+                <p>Date: February 15, 2024</p>
+                <p>Location: XYZ Auditorium</p>
+                <a href="events_regis?event=Duo Dance">Click here to register</a>
+            </div>
+        </div>
+        <!-- event 3 -->
+    
+        <div class="event">
+            <img src="{% static 'img/2 min to fame.png' %}" alt="Event 2">
+            <div class="event-details">
+                <h3>2 min to fame </h3>
+                <p>Date: February 15, 2024</p>
+                <p>Location: XYZ Auditorium</p>
+                <a href="events_regis?event=2 min to frame">Click here to register</a>
+            </div>
+        </div>
+        <!-- event 4 -->
+    
+        <div class="event">
+            <img src="{% static 'img/face paint.png' %}" alt="Event 2">
+            <div class="event-details">
+                <h3>Face paint  </h3>
+                <p>Date: February 15, 2024</p>
+                <p>Location: XYZ Auditorium</p>
+                <a href="events_regis?event=Face paint">Click here to register</a>
+            </div>
+        </div>
+        <!-- event 5 -->
+        <div class="event">
+            <img src="{% static 'img/reel.png' %}" alt="Event 2">
+            <div class="event-details">
+                <h3>Rell  </h3>
+                <p>Date: February 15, 2024</p>
+                <p>Location: XYZ Auditorium</p>
+                <a href="events_regis?event=Rell">Click here to register</a>
+            </div>
+        </div>
+        <!-- event 6 -->
+        <div class="event">
+            <img src="{% static 'img/selfie.png' %}" alt="Event 2">
+            <div class="event-details">
+                <h3> selfie </h3>
+                <p>Date: February 15, 2024</p>
+                <p>Location: XYZ Auditorium</p>
+                <a href="events_regis?event=Selfie">Click here to register</a>
+            </div>
+        </div>
+      
+        <!-- Add more events as needed -->
+    </div>
+      
+</div>
+
+    
+
+
+<!-- JavaScript Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'lib/wow/wow.min.js' %}"></script>
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+<script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+<script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+<script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'js/main.js' %}"></script>
+    </html>
