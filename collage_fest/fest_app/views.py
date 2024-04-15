@@ -10,10 +10,14 @@ import os
 def events(request):
     return render (request,'events.html')
 
+def logout_page(request):
+    return render(request,'index_login.html')
+
 
 def events_regis(request):
+    global student
     try:
-        student = student_detalis.objects.get(roll=34230821042)
+        student = student_detalis.objects.get(roll=student.roll)
     except student_detalis.DoesNotExist:
         raise Http404("Student does not exist")
     
@@ -21,6 +25,7 @@ def events_regis(request):
 
 def home(request):
     return render(request,'index.html')
+
 def student_login(request):
     return render(request,'stu_login.html')
 
@@ -135,23 +140,84 @@ def p_app(request,id):
 
 
 
+
+student=None
+
 def custom_login(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         roll = request.POST.get('roll')
-        user = authenticate(request, name=name, roll=roll)
-        if user is not None:
-            # Authentication successful, log the user in
-            auth_login(request, user)  # Use auth_login instead of login
-            return redirect('home')  # Redirect to home page after login
+        
+        
+        students = student_detalis.objects.filter(name=name, roll=roll)
+        
+        
+        if students.exists():
+            
+            global student
+            student = students.first()
+            
+            request.session['student_name'] = student.name
+            request.session['student_roll'] = student.roll
+            request.session['student_clg'] = student.college_name
+            print(student.roll)
+            print(student.name)
+            return redirect('logout_page')  # Redirect to home page after successful login
         else:
-            # Authentication failed, show error message
             messages.error(request, 'Invalid name or roll number')
+    
     return render(request, 'login.html')
 
-def logout_view(request):
-    logout(request)
-    return redirect('login')
+
+def save_data(request):
+    global student
+    if request.method == 'POST':
+        roll = student.roll # Predefined roll number
+        eventname = request.POST.get('event_name')
+        try:
+            student = student_detalis.objects.get(roll=roll)
+        except student_detalis.DoesNotExist:
+            raise Http404("Student does not exist")
+
+        # Check if a record with the roll number already exists
+        try:
+            z = abc.objects.get(roll=roll)
+        except abc.DoesNotExist:
+            # If the roll number is not in the table, create a new record
+            z = abc(roll=roll)
+
+        # Map event names to field names
+        event_field_map = {
+            'CatWalk': 'CatWalk',
+            'DuoDance': 'DuoDance',
+            'mintoframe': 'mintoframe',
+            'Facepaint': 'Facepaint',
+            'rell': 'rell',
+            'selfie': 'selfie'
+        }
+
+        # Set the event to 1 based on the event_name
+        if eventname in event_field_map:
+            setattr(z, event_field_map[eventname], 1)
+
+        # Assuming the field names are the same as the event names in your event_field_map
+        l = [event_name for event_name, field_name in event_field_map.items() if getattr(z, field_name) == 1]
+
+        
+        z.save()
+
+        return render(request, 'event_regis.html', {'l': l,'student': student})
+    else:
+        return HttpResponse('Invalid request method')
+
+
+def logout(request):
+    request.session.clear()
+    return redirect('home')
+
+
+
+
 
 
  # Redirect to login page after logout
@@ -198,42 +264,11 @@ def handle_uploaded_file(file,file_name):
         for chunk in file.chunks():
             destination.write(chunk)
 
-def save_data(request):
-    if request.method == 'POST':
-        roll = 34230821011 # Predefined roll number
-        eventname = request.POST.get('event_name')
-        try:
-            student = student_detalis.objects.get(roll=roll)
-        except student_detalis.DoesNotExist:
-            raise Http404("Student does not exist")
 
-        # Check if a record with the roll number already exists
-        try:
-            z = abc.objects.get(roll=roll)
-        except abc.DoesNotExist:
-            # If the roll number is not in the table, create a new record
-            z = abc(roll=roll)
 
-        # Map event names to field names
-        event_field_map = {
-            'CatWalk': 'CatWalk',
-            'DuoDance': 'DuoDance',
-            'mintoframe': 'mintoframe',
-            'Facepaint': 'Facepaint',
-            'rell': 'rell',
-            'selfie': 'selfie'
-        }
 
-        # Set the event to 1 based on the event_name
-        if eventname in event_field_map:
-            setattr(z, event_field_map[eventname], 1)
 
-        # Assuming the field names are the same as the event names in your event_field_map
-        l = [event_name for event_name, field_name in event_field_map.items() if getattr(z, field_name) == 1]
 
-        
-        z.save()
-
-        return render(request, 'event_regis.html', {'l': l,'student': student})
-    else:
-        return HttpResponse('Invalid request method')
+def logout(request):
+    request.session.clear()
+    return redirect('home')

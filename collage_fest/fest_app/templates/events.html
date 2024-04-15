@@ -150,8 +150,8 @@
                     </div>
                     <button class="btn-search btn btn-primary btn-md-square me-4 rounded-circle d-none d-lg-inline-flex"
                         data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search"></i></button>
-                    <a href="student_login"
-                        class="btn btn-primary py-2 px-4 d-none d-xl-inline-block rounded-pill">Register/Login</a>
+                    <a href="{% url 'logout'%}"
+                        class="btn btn-primary py-2 px-4 d-none d-xl-inline-block rounded-pill">logout</a>
                 </div>
             </nav>
         </div>
@@ -167,7 +167,7 @@
                 <h3>CatWalk</h3>
                 <p>Date: January 1, 2024</p>
                 <p>Location: ABC Hall</p>
-                <form action="save_data" method="POST">
+                <form action="{% url 'save_data' %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="event_name" value="CatWalk">
                     <button type="submit">Click here to register for CatWalk</button>
@@ -181,7 +181,7 @@
                 <h3>Duo Dance</h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <form action="save_data" method="POST">
+                <form action="{% url 'save_data'%}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="event_name" value="DuoDance">
                     <button type="submit">Click here to register</button>
@@ -196,7 +196,7 @@
                 <h3>2 min to fame </h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <form action="save_data" method="POST">
+                <form action="{% url 'save_data'%}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="event_name" value="mintoframe">
                     <button type="submit">Click here to register</button>
@@ -211,7 +211,7 @@
                 <h3>Face paint  </h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <form action="save_data" method="POST">
+                <form action="{% url 'save_data'%}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="event_name" value="Facepaint">
                     <button type="submit">Click here to register</button>
@@ -225,7 +225,7 @@
                 <h3>Rell  </h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <form action="save_data" method="POST">
+                <form action="{% url 'save_data' %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="event_name" value="rell">
                     <button type="submit">Click here to register</button>
@@ -239,7 +239,7 @@
                 <h3> selfie </h3>
                 <p>Date: February 15, 2024</p>
                 <p>Location: XYZ Auditorium</p>
-                <form action="save_data" method="POST">
+                <form action="{% url 'save_data' %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="event_name" value="selfie">
                     <button type="submit">Click here to register</button>

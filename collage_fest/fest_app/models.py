@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class student_detalis(models.Model): 
@@ -9,6 +10,7 @@ class student_detalis(models.Model):
     college_name=models.CharField(max_length=300)
     payment_status=models.IntegerField()
     payment_ss=models.ImageField()
+    last_login = models.DateTimeField(default=timezone.now)
     class Meta:
         db_table='student_detalis'
 
